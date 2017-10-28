@@ -2,6 +2,9 @@ package com.azin.brewer.controller;
 
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,9 +18,13 @@ import com.azin.brewer.model.Cerveja;
 @Controller
 @RequestMapping("/cerveja")
 public class CervejaController {
+	
+    private static final Logger logger = LogManager.getLogger(CervejaController.class);
+
 
 	@GetMapping("/form")
 	public String novo(Cerveja cerveja) {
+		logger.error("TEste");
 		return "cerveja/form";
 	}
 
