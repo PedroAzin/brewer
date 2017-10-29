@@ -12,9 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.azin.brewer.validation.SKU;
 
 @Entity
 @Table(name="cerveja")
@@ -24,33 +28,45 @@ public class Cerveja {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
-	@NotBlank
+	@NotBlank(message="O campo sku e obrigatório")
+	@SKU
 	private String sku;
 	
-	@NotBlank
+	@NotBlank(message="O campo nome e obrigatório")
 	private String nome;
 	
 	@Size(min = 1, max = 50)
+	@NotBlank(message="O campo descricao e obrigatório")
 	private String descricao;
 	
+	@NotBlank(message="O campo valor e obrigatório")
 	private BigDecimal valor;
 	
 	@Column(name="teor_alcoolico")
+	@NotBlank(message="O campo teor alcoolico e obrigatório")
+	@DecimalMax(value="100.0" , message="A teor alcoolico  deve ser menor ou igual a 100")
 	private BigDecimal teorAlcoolico;
 	
+	@NotBlank(message="O campo comissao e obrigatório")
+	@DecimalMax(value="100.0" , message="A comissao deve ser menor ou igual a 100")
 	private BigDecimal comissao;
 	
 	@Column(name="quantidade_estoque")
+	@Max(value=9999, message="A quantidade deve ser menor que 9999")
+	@NotBlank(message="O campo quantidade estoque e obrigatório")
 	private Integer quantidadeEstoque;
 
 	@Enumerated(EnumType.STRING)
+	@NotBlank(message="O campo origem e obrigatório")
 	private Origem origem;
 	
 	@Enumerated(EnumType.STRING)
+	@NotBlank(message="O campo sabor e obrigatório")
 	private Sabor sabor;
 	
 	@ManyToOne()
 	@JoinColumn(name="codigo_estilo")
+	@NotBlank(message="O campo estilo e obrigatório")
 	private Estilo estilo;
 	
 	

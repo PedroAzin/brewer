@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "estilo")
@@ -15,7 +18,9 @@ public class Estilo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long codigo;
-
+	
+	@NotBlank(message="O campo nome e obrigatório")
+	@Size(max=15)
 	private String nome;
 
 	@OneToMany(mappedBy = "estilo")

@@ -2,8 +2,6 @@ package com.azin.brewer.controller;
 
 import javax.validation.Valid;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,12 +43,11 @@ public class CervejaController {
 			RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
-			model.addAttribute("msg", "Erro");
 			model.addAttribute(cerveja);
 			return novo(cerveja);
 		}
 		cervejaService.save(cerveja);
-		attributes.addFlashAttribute("msg", "Cerveja " + cerveja.getNome() + "salva com sucesso !");
+		attributes.addFlashAttribute("msg", "Cerveja " + cerveja.getNome() + " salva com sucesso !");
 		return new ModelAndView("redirect:/cerveja/form");
 
 	}
