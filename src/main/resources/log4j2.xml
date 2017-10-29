@@ -9,6 +9,9 @@
 	
 	<Loggers>
 		
+		
+		<Logger name="org.hibernate.SQL" level="debug"/>
+	
 		<Root level="error">
 			<AppenderRef ref="Console" />
 		</Root>
