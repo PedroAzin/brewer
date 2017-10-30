@@ -1,0 +1,14 @@
+/* Utilidades */
+.bw-glyphicon-large {
+	font-size: 1.4em
+}
+
+/* #components */
+.bw-field-action {
+	display: flex;
+	align-items: center
+}
+
+.bw-field-action-link {
+	margin-left: 5px;
+}

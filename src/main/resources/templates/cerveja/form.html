@@ -19,23 +19,24 @@
 				<h1>Cadastro de cerveja</h1>
 			</div>
 		</div>
-	
-	
+
+
 		<th:block th:include="fragments/mensagem-sucesso">
-				</th:block>
+		</th:block>
 		<div class="container-fluid">
 
 
 
 			<form method="POST" th:object="${cerveja}"
 				class="form-vertical  js-form-loading">
-				
+
 				<th:block th:include="fragments/mensagem-error">
 				</th:block>
 				<div class="row">
-					<div class="col-sm-2  form-group" th:classappend="${ #fields.hasErrors('sku')} ? has-error">
-						<label for="sku" class="control-label">SKU</label> <input id="sku" type="text"
-							class="form-control" th:field="*{sku}" />
+					<div class="col-sm-2  form-group"
+						th:classappend="${ #fields.hasErrors('sku')} ? has-error">
+						<label for="sku" class="control-label">SKU</label> <input id="sku"
+							type="text" class="form-control" th:field="*{sku}" />
 					</div>
 
 					<div class="col-sm-10  form-group">
@@ -52,11 +53,21 @@
 
 				<div class="row">
 					<div class="col-sm-3  form-group">
-						<label for="estilo">Estilo</label> <select id="estilo"
-							th:field="*{estilo}" class="form-control">
-							<option value="">Selecione o estilo</option>
-							<option th:each="estilo : ${estilos}" th:value="${estilo.codigo}">[[${estilo.nome}]]</option>
-						</select>
+						<label for="estilo">Estilo</label>
+						<div class="bw-field-action">
+							<select id="estilo" th:field="*{estilo}" class="form-control">
+								<option value="">Selecione o estilo</option>
+								<option th:each="estilo : ${estilos}"
+									th:value="${estilo.codigo}">[[${estilo.nome}]]</option>
+							</select>
+							<div class="bw-field-action-link">
+								<a href="#" data-toggle="modal"
+									data-target="#modalCadastroRapido"> <i
+									class="glyphicon  glyphicon-plus-sign  bw-glyphicon-large"></i>
+								</a>
+							</div>
+						</div>
+
 					</div>
 
 					<div class="col-sm-3  form-group">
@@ -122,6 +133,10 @@
 
 			</form>
 		</div>
+		<div th:replace="estilo/form-cadastro-rapido-modal :: modal"></div>
 	</section>
+	<th:block layout:fragment="custom-js">
+		<script th:src="@{/javascript/estilo/cadastro-rapido.js}"></script>
+	</th:block>
 </body>
 </html>
