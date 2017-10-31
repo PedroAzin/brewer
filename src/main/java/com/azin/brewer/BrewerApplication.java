@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 
+import com.azin.brewer.storage.FotoStorage;
+import com.azin.brewer.storage.local.FotoStorageLocal;
+
 @SpringBootApplication
 public class BrewerApplication {
 
@@ -18,5 +21,10 @@ public class BrewerApplication {
 	@Bean
 	public LocaleResolver localeResolver() {
 		return new FixedLocaleResolver(new Locale("pt", "BR"));
+	}
+	
+	@Bean
+	public FotoStorage fotoStorage() {
+		return new FotoStorageLocal();
 	}
 }

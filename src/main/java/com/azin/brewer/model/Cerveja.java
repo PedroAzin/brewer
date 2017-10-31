@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -21,55 +22,59 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.azin.brewer.validation.SKU;
 
 @Entity
-@Table(name="cerveja")
+@Table(name = "cerveja")
 public class Cerveja {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotBlank(message="O campo sku e obrigatório")
+	@NotBlank(message = "O campo sku e obrigatório")
 	@SKU
 	private String sku;
-	
-	@NotBlank(message="O campo nome e obrigatório")
+
+	@NotBlank(message = "O campo nome e obrigatório")
 	private String nome;
-	
+
 	@Size(min = 1, max = 50)
-	@NotBlank(message="O campo descricao e obrigatório")
+	@NotBlank(message = "O campo descricao e obrigatório")
 	private String descricao;
-	
-	@NotBlank(message="O campo valor e obrigatório")
+
+	@NotNull(message = "O campo valor e obrigatório")
 	private BigDecimal valor;
-	
-	@Column(name="teor_alcoolico")
-	@NotBlank(message="O campo teor alcoolico e obrigatório")
-	@DecimalMax(value="100.0" , message="A teor alcoolico  deve ser menor ou igual a 100")
+
+	@Column(name = "teor_alcoolico")
+	@NotNull(message = "O campo teor alcoolico e obrigatório")
+	@DecimalMax(value = "100.0", message = "A teor alcoolico  deve ser menor ou igual a 100")
 	private BigDecimal teorAlcoolico;
-	
-	@NotBlank(message="O campo comissao e obrigatório")
-	@DecimalMax(value="100.0" , message="A comissao deve ser menor ou igual a 100")
+
+	@NotNull(message = "O campo comissao e obrigatório")
+	@DecimalMax(value = "100.0", message = "A comissao deve ser menor ou igual a 100")
 	private BigDecimal comissao;
-	
-	@Column(name="quantidade_estoque")
-	@Max(value=9999, message="A quantidade deve ser menor que 9999")
-	@NotBlank(message="O campo quantidade estoque e obrigatório")
+
+	@Column(name = "quantidade_estoque")
+	@Max(value = 9999, message = "A quantidade deve ser menor que 9999")
+	@NotNull(message = "O campo quantidade estoque e obrigatório")
 	private Integer quantidadeEstoque;
 
 	@Enumerated(EnumType.STRING)
-	@NotBlank(message="O campo origem e obrigatório")
+	@NotNull(message = "O campo origem e obrigatório")
 	private Origem origem;
-	
+
 	@Enumerated(EnumType.STRING)
-	@NotBlank(message="O campo sabor e obrigatório")
+	@NotNull(message = "O campo sabor e obrigatório")
 	private Sabor sabor;
-	
+
 	@ManyToOne()
-	@JoinColumn(name="codigo_estilo")
-	@NotBlank(message="O campo estilo e obrigatório")
+	@JoinColumn(name = "codigo_estilo")
+	@NotNull(message = "O campo estilo e obrigatório")
 	private Estilo estilo;
-	
-	
+
+	private String foto;
+
+	@Column(name = "content_type")
+	private String contentType;
+
 	public String getSku() {
 		return sku;
 	}
@@ -158,6 +163,22 @@ public class Cerveja {
 		this.estilo = estilo;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -182,7 +203,5 @@ public class Cerveja {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }
