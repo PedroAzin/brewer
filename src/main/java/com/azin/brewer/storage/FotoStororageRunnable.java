@@ -3,7 +3,6 @@ package com.azin.brewer.storage;
 import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.azin.brewer.storage.FotoStorage;
 import com.azin.brewer.dto.FotoDto;
 
 public class FotoStororageRunnable implements Runnable {

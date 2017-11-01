@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.azin.brewer.storage.FotoStorage;
 import com.azin.brewer.dto.FotoDto;
+import com.azin.brewer.storage.FotoStorage;
 import com.azin.brewer.storage.FotoStororageRunnable;
 
 @RestController
@@ -34,5 +34,10 @@ public class FotoController {
 	@GetMapping("/temp/{nome:.*}")
 	public byte[] recuperarFotoTemporaria(@PathVariable String nome) {
 		return fotoStorage.recuperarFotoTemporaria(nome);
+	}
+	
+	@GetMapping("/{nome:.*}")
+	public byte[] recuperar(@PathVariable String nome) {
+		return fotoStorage.recuperar(nome);
 	}
 }

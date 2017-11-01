@@ -17,7 +17,20 @@
 
 		<div class="page-header">
 			<div class="container-fluid">
-				<h1>Cadastro de cerveja</h1>
+				<div class="row">
+					<div class="col-sm-10">
+						<h1>Cadastro de cervejas</h1>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="aw-page-header-controls">
+							<a class="btn  btn-default" th:href="@{/cerveja}"> <i
+								class="glyphicon  glyphicon-plus-sign"></i> <span
+								class="hidden-xs  hidden-sm">Pesquisar cerveja</span>
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -34,27 +47,27 @@
 				<th:block th:include="fragments/mensagem-error">
 				</th:block>
 				<div class="row">
-					<div class="col-sm-2  form-group"
+					<div class="col-sm-2  form-group bw-required"
 						th:classappend="${ #fields.hasErrors('sku')} ? has-error">
 						<label for="sku" class="control-label">SKU</label> <input id="sku"
 							type="text" class="form-control" th:field="*{sku}" />
 					</div>
 
-					<div class="col-sm-10  form-group">
-						<label for="nome">Nome</label> <input th:field="*{nome}" id="nome"
-							type="text" class="form-control" />
+					<div class="col-sm-10  form-group bw-required">
+						<label class="control-label" for="nome">Nome</label> <input
+							th:field="*{nome}" id="nome" type="text" class="form-control" />
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label for="descricao">Descrição</label>
+				<div class="form-group bw-required">
+					<label class="control-label" for="descricao">Descrição</label>
 					<textarea id="descricao" th:field="*{descricao}" rows="3"
 						class="form-control"></textarea>
 				</div>
 
 				<div class="row">
-					<div class="col-sm-3  form-group">
-						<label for="estilo">Estilo</label>
+					<div class="col-sm-3  form-group bw-required">
+						<label class="control-label" for="estilo">Estilo</label>
 						<div class="bw-field-action">
 							<select id="estilo" th:field="*{estilo}" class="form-control">
 								<option value="">Selecione o estilo</option>
@@ -71,16 +84,17 @@
 
 					</div>
 
-					<div class="col-sm-3  form-group">
-						<label for="sabor">Sabor</label> <select id="sabor"
-							th:field="*{sabor}" class="form-control">
+					<div class="col-sm-3  form-group bw-required">
+						<label class="control-label" for="sabor">Sabor</label> <select
+							id="sabor" th:field="*{sabor}" class="form-control">
 							<option value="">Selecione o sabor</option>
 							<option th:each="sabor : ${sabores}" th:value="${sabor}">[[${sabor.descricao}]]</option>
 						</select>
 					</div>
 
-					<div class="col-sm-3  form-group">
-						<label for="teorAlcoolico">Teor alcoólico</label>
+					<div class="col-sm-3  form-group bw-required">
+						<label class="control-label" for="teorAlcoolico">Teor
+							alcoólico</label>
 						<div class="input-group">
 							<input id="teorAlcoolico" th:field="*{teorAlcoolico}" type="text"
 								class="form-control" />
@@ -88,8 +102,8 @@
 						</div>
 					</div>
 
-					<div class="col-lg-3  col-sm-6  form-group">
-						<label for="origem">Origem</label>
+					<div class="col-lg-3  col-sm-6  form-group bw-required">
+						<label class="control-label" for="origem">Origem</label>
 						<div>
 							<th:block th:each="origem : ${origens}">
 								<div class="radio  radio-inline">
@@ -103,8 +117,8 @@
 				</div>
 
 				<div class="row">
-					<div class="col-sm-3  form-group">
-						<label for="preco">Preço</label>
+					<div class="col-sm-3  form-group bw-required">
+						<label class="control-label" for="preco">Preço</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
 							<input id="preco" th:field="*{valor}" type="text"
@@ -112,8 +126,8 @@
 						</div>
 					</div>
 
-					<div class="col-sm-3  form-group">
-						<label for="comissao">Comissão</label>
+					<div class="col-sm-3  form-group bw-required">
+						<label class="control-label" for="comissao">Comissão</label>
 						<div class="input-group">
 							<input id="comissao" th:field="*{comissao}" type="text"
 								class="form-control  js-decimal" />
@@ -121,9 +135,9 @@
 						</div>
 					</div>
 
-					<div class="col-sm-3  form-group">
-						<label for="estoque">Estoque</label> <input id="estoque"
-							th:field="*{quantidadeEstoque}" type="text"
+					<div class="col-sm-3  form-group bw-required">
+						<label class="control-label" for="estoque">Estoque</label> <input
+							id="estoque" th:field="*{quantidadeEstoque}" type="text"
 							class="form-control  js-plain" />
 					</div>
 				</div>
@@ -132,7 +146,7 @@
 
 					<input type="hidden" th:field="*{foto}" /> <input type="hidden"
 						th:field="*{contentType}" />
-					<div class="form-group  col-sm-12">
+					<div class="form-group  bw-required col-sm-12">
 						<label class="control-label">Foto</label>
 						<div class="js-container-foto-cerveja">
 							<div id="upload-drop" class="bw-upload">
@@ -140,7 +154,7 @@
 									a foto aqui ou </span> <a class="bw-upload-form-file">selecione <input
 									id="upload-select" type="file" accept=".jpg,.jpeg,.png" /></a>
 							</div>
-						<div id="fotoView"></div>
+							<div id="fotoView"></div>
 						</div>
 					</div>
 				</div>
